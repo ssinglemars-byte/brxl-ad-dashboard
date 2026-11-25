@@ -1,0 +1,106 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BRXL 广告安全看板</title><style>
+:root{--bg:#f7f8fa;--card:#fff;--text:#171a1f;--muted:#667085;--line:#e6e8ec;--red:#d92d20;--orange:#dc6803;--green:#039855;--gray:#667085;--blue:#1570ef}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:30px 24px 60px}
+.hero{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:18px}
+.eyebrow{font-size:13px;color:var(--muted);letter-spacing:.04em}
+h1{font-size:34px;line-height:1.2;margin:6px 0 8px;letter-spacing:-.02em}
+.subtitle{color:var(--muted);font-size:15px;margin:0;max-width:720px}
+.hero-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.chip{border:1px solid #b2ddc6;background:#ecfdf3;color:#027a48;border-radius:999px;padding:7px 13px;font-weight:600;font-size:13px;white-space:nowrap}
+.updated{font-size:12px;color:var(--muted);text-align:right;line-height:1.5}
+.updated b{color:var(--text);font-size:13px}
+.callout-main{background:linear-gradient(135deg,#fff 0%,#fff8f6 100%);border:1px solid #f2d5cd;border-radius:16px;padding:20px 22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.callout-main .label{font-size:12px;color:var(--red);font-weight:700;letter-spacing:.08em}
+.callout-main p{font-size:18px;font-weight:600;margin:8px 0 0;line-height:1.55}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:22px}
+.metric{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 15px;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.metric-label{font-size:13px;color:var(--muted)}
+.metric-value{font-size:27px;font-weight:750;margin:5px 0 3px;line-height:1.2}
+.metric-sub{font-size:12px;color:var(--muted);line-height:1.45}
+.metric.red .metric-value{color:var(--red)}
+.metric.orange .metric-value{color:var(--orange)}
+.metric.green .metric-value{color:var(--green)}
+.metric.gray .metric-value{color:var(--gray)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.panel h2{font-size:20px;margin:0 0 5px;letter-spacing:-.01em}
+.panel-note{color:var(--muted);font-size:13px;margin:0 0 16px}
+.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.action{border-radius:14px;padding:17px 18px;border:1px solid var(--line)}
+.action.urgent{background:#fff8f7;border-color:#f4cfc9}
+.action.review{background:#fcfcfd}
+.action-top{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.pill{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px}
+.pill.red{background:#fee4e2;color:var(--red)}
+.pill.orange{background:#fef0c7;color:#b54708}
+.action-name{font-size:13px;color:var(--muted)}
+.action h3{font-size:17px;margin:0 0 8px;line-height:1.45}
+.action p{font-size:14px;margin:0;color:#344054}
+.why{margin-top:11px;font-size:13px;color:#475467;border-top:1px dashed #f0c7c0;padding-top:10px}
+.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lead{font-size:15px;margin-bottom:14px;color:#344054}
+.stack{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:190px 1fr auto;gap:18px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
+.row-title{font-weight:700;font-size:14px}
+.row-body{font-size:14px;color:#344054}
+.row-detail{color:var(--muted);font-size:13px;margin-top:3px}
+.row-state{font-size:13px;font-weight:700;white-space:nowrap}
+.red-text{color:var(--red)}.orange-text{color:var(--orange)}.gray-text{color:var(--gray)}
+.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:15px}
+.mini-title{font-size:13px;color:var(--muted)}
+.mini-value{font-size:25px;font-weight:750;margin:3px 0 6px}
+.mini p{font-size:13px;color:#475467;margin:0}
+.soft-note{margin-top:12px;font-size:13px;color:var(--muted)}
+.incident-box{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.incident-box p{font-size:14px;margin:0 0 10px}
+.incident-box p:last-child{margin-bottom:0}
+.campaigns{list-style:none;padding:0;margin:12px 0 0;counter-reset:rank}
+.campaigns li{counter-increment:rank;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.campaigns li:last-child{border-bottom:0}
+.campaigns li::before{content:counter(rank);width:24px;height:24px;border-radius:50%;background:#f2f4f7;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 auto}
+.campaign-name{font-weight:650;font-size:14px;flex:1}
+.campaign-meta{font-size:13px;color:var(--muted);white-space:nowrap}
+.boundary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.boundary{border-radius:12px;padding:15px 16px;border:1px solid var(--line)}
+.boundary.ok{background:#f6fef9;border-color:#c6f0d6}
+.boundary.warn{background:#fffcf5;border-color:#fedf89}
+.boundary.neutral{background:#f8fafc}
+.boundary h3{font-size:15px;margin:0 0 8px}
+.boundary ul{margin:0;padding-left:18px}
+.boundary li{font-size:13px;color:#475467;margin:5px 0}
+footer{color:var(--muted);font-size:12px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:1000px){.metrics{grid-template-columns:repeat(3,1fr)}.action-grid,.review-grid,.mini-grid,.boundary-grid{grid-template-columns:1fr}.row{grid-template-columns:1fr;gap:5px}.row-state{text-align:left}.campaigns li{align-items:flex-start;flex-direction:column;gap:4px}.campaign-meta{white-space:normal}}
+@media(max-width:640px){.wrap{padding:20px 14px 40px}h1{font-size:28px}.hero{flex-direction:column}.hero-right{align-items:flex-start;text-align:left}.metrics{grid-template-columns:repeat(2,1fr)}}
+</style></head><body><div class='wrap'><header class="hero"><div><div class="eyebrow">BRXL · 美国市场 · USD · 北京时间</div><h1>广告安全看板</h1><p class="subtitle">帮你盯住优惠、商品和广告后台里最容易出事的地方。这里只写结论和建议动作，原始证据仍保留在风险库里。</p></div><div class="hero-right"><div class="chip">只读保护 · 不自动改账户</div><div class="updated">最近一次检查<br><b>2026-11-25T14:55:41+08:00</b></div></div></header><section class="callout-main"><div class="label">一句话结论</div><p>现在有 2 件事建议你马上确认，最要紧的是「BF90off 全站 90% OFF」和「核心商品被拒登」；另外 6 件事需要你抽时间复核。系统只读取账户，没有自动改任何配置。</p></section><section class="metrics"><div class="metric red"><div class="metric-label">需要马上确认</div><div class="metric-value">2</div><div class="metric-sub">别等到投放受影响再处理</div></div><div class="metric orange"><div class="metric-label">建议复核</div><div class="metric-value">6</div><div class="metric-sub">只保留你需要处理的事项</div></div><div class="metric red"><div class="metric-label">核心商品可投放</div><div class="metric-value">254/270</div><div class="metric-sub">16 个变体被拒登，需要修复</div></div><div class="metric orange"><div class="metric-label">正在展示的优惠</div><div class="metric-value">3 个</div><div class="metric-sub">另有 1 个已停用、7 个读不全</div></div><div class="metric orange"><div class="metric-label">全店商品需处理</div><div class="metric-value">443 个</div><div class="metric-sub">主要是价格、币种和运费信息不一致</div></div><div class="metric gray"><div class="metric-label">商家中心状态</div><div class="metric-value">需要补查</div><div class="metric-sub">登录和身份正常，但整体状态未完全确认</div></div></section><section class="panel"><h2>现在需要你做什么</h2><p class="panel-note">只保留投放负责人需要处理的事项。其他运营类问题仍在风险库里，不在这里占你的时间。</p><div class="action-grid"><article class="action urgent"><div class="action-top"><span class="pill red">马上确认</span><span class="action-name">BF90off</span></div><h3>全站 90% OFF，先确认是不是获批活动</h3><p>活动还在有效期内，但 Shopping Ads 和免费商品列表目前都已经停止展示这个优惠。确认前请保持停用，避免它再次恢复。</p><div class="why"><b>为什么重要：</b>覆盖全站商品，而且正好落在 11 月 19 日开始的异常窗口。</div></article><article class="action urgent"><div class="action-top"><span class="pill red">马上修复</span><span class="action-name">核心热销商品</span></div><h3>核心商品被拒登，先恢复投放资格</h3><p>美国站的核心商品变体里有一批被拒登，主要集中在币种、价格和运费信息不一致。修复后需要再回读一次状态。</p><div class="why"><b>为什么重要：</b>这些商品可能没法参与 Shopping Ads 和 PMax 商品投放。</div></article></div><div class="review-grid"><article class="action review"><div class="action-top"><span class="pill orange">建议复核</span><span class="action-name">正在跑的大折扣</span></div><p>bk2026b1g1、bk70off、bk2026b2g1 还在展示。请核对折扣力度、买件条件和适用的商品范围。</p></article><article class="action review"><div class="action-top"><span class="pill orange">建议复核</span><span class="action-name">预算与目标回报率</span></div><p>发现 34 次明显预算调整和 1 次目标回报率上调。优先看 3.33 倍上调、0.41 倍下调，以及 2.0 调到 2.5 的那次。</p></article><article class="action review"><div class="action-top"><span class="pill orange">建议复核</span><span class="action-name">转化目标</span></div><p>网站购买没有设为主目标，同时有些非购买目标进入了出价。请一次性确认哪些信号应该用于优化。</p></article><article class="action review"><div class="action-top"><span class="pill orange">建议复核</span><span class="action-name">广告开关</span></div><p>发现 37 次广告系列、广告组或广告的状态变化。请优先核对核心品牌和 BFCM 相关广告。</p></article></div></section><section class="panel"><h2>优惠活动</h2><p class="panel-note">重点看“是不是获批、是不是展示给对的商品”。</p><div class="lead">目前共 14 个优惠活动：3 个正在展示，1 个已停用但仍在有效期内，7 个信息读不全。</div><div class="stack"><div class="row"><div class="row-title">最需要看：BF90off</div><div class="row-body">全站 90% OFF，优惠已停用，但活动还没过期。请先确认是否获批，确认前不要恢复。</div><div class="row-state red-text">等待确认</div></div><div class="row"><div class="row-title">正在展示的大折扣</div><div class="row-body">bk2026b1g1、bk70off、bk2026b2g1 正在投放。接口读不到具体商品清单，请到后台核对适用范围。</div><div class="row-state orange-text">需要核对</div></div><div class="row"><div class="row-title">信息读不全的活动</div><div class="row-body">bf-2、BMSM、18off、bf、bf-1、25off、b1g1 的折扣、商品范围和时间无法从接口确认。不能当作正常，需要人工看一眼。</div><div class="row-state gray-text">人工补查</div></div></div></section><section class="panel"><h2>广告改动</h2><p class="panel-note">只看幅度和方向，不展开后台原始记录。</p><div class="mini-grid"><div class="mini"><div class="mini-title">预算调整</div><div class="mini-value">34 次</div><p>最大一次从 $15 调到 $50；也有从 $484.05 调到 $200.05。</p></div><div class="mini"><div class="mini-title">目标回报率</div><div class="mini-value">1 次</div><p>从 2.0 调到 2.5，需要确认是否获批。</p></div><div class="mini"><div class="mini-title">广告开关</div><div class="mini-value">37 次</div><p>涉及广告系列、广告组和广告，集中在异常窗口附近。</p></div></div><div class="soft-note">预算如果被多输一个 0（10 倍以上），会按最高级别立即提醒；这类情况已通过模拟测试。</div><div class="soft-note">审计记录只说明“谁在什么时候改了什么”，不能自动等同于“已经审批”。</div></section><section class="panel"><h2>商品与来源</h2><p class="panel-note">商品出问题，通常会直接影响 Shopping Ads 和 PMax 能不能正常展示。</p><div class="stack"><div class="row"><div class="row-title">核心商品</div><div class="row-body">254 / 270 个变体可投放<div class="row-detail">16 个被拒登，优先修复美国站商品信息。</div></div></div><div class="row"><div class="row-title">全店商品</div><div class="row-body">9,541 个商品已读取<div class="row-detail">443 个有阻断性问题，主要是价格、币种和运费不匹配。</div></div></div><div class="row"><div class="row-title">美国站展示</div><div class="row-body">238 个变体暂不可展示<div class="row-detail">这些商品可能无法进入 Shopping Ads 或免费商品列表。</div></div></div><div class="row"><div class="row-title">商品来源</div><div class="row-body">8 个来源已读取<div class="row-detail">商品 Feed 能读，但后台整体健康仍显示未完全确认，需要人工补查。</div></div></div></div></section><section class="panel"><h2>转化与流量</h2><div class="incident-box"><p><b>时间上重合：</b>11/19–11/24 与 BF90off 的有效期重叠。后台回报从前一段的 2.61 降到 1.25，转化率从 4.31% 降到 2.42%。</p><p><b>但不能直接算损失：</b>11/25 只有部分数据（后台回报 0.22），不适合和完整自然日比较；目前也没有商品级展示价和 Shopify 订单证据。</p><p class="soft-note">所以这里只把它当作“需要重点复核的异常信号”，不当作已经确认的事故损失。</p></div><div class="soft-note">下面是 11/19–11/24 花费最高的 5 个广告系列。这里的回报来自广告后台，不代表 Shopify 实际订单。</div><ol class="campaigns"><li><div class="campaign-name">BRXL-PLA-51024Test-LJN-US-20260929</div><div class="campaign-meta">花费 $1,452.68 · 转化 15.5 · 后台回报 1.04</div></li><li><div class="campaign-name">BRXL-Pmax-Sets-LJN-US-20260929</div><div class="campaign-meta">花费 $978.34 · 转化 17.0 · 后台回报 1.53</div></li><li><div class="campaign-name">BRXL-Search-General-LJN-US-20260331</div><div class="campaign-meta">花费 $687.82 · 转化 10.0 · 后台回报 1.06</div></li><li><div class="campaign-name">BRXL-PLA-ALL-LJN-US-20250920</div><div class="campaign-meta">花费 $669.48 · 转化 9.1 · 后台回报 1.04</div></li><li><div class="campaign-name">BRXL-PLA-WAWB61014-LJN-US-20260706</div><div class="campaign-meta">花费 $663.29 · 转化 4.0 · 后台回报 0.32</div></li></ol></section><section class="panel"><h2>这份看板怎么用</h2><p class="panel-note">先确认结论，再看细节；所有“还没确认”的事项都不会被当成正常。</p>
+    <div class="boundary-grid">
+      <div class="boundary ok">
+        <h3>这份看板能看什么</h3>
+        <ul>
+          <li>优惠折扣写错、商品价格写错、商品范围写错</li>
+          <li>预算多输一个 0、目标回报率被大幅改动</li>
+          <li>购买转化选错、广告被误开关、商品被拒登</li>
+          <li>Feed 停止更新、PMax 商品范围被放宽、接口读取失败</li>
+        </ul>
+      </div>
+      <div class="boundary warn">
+        <h3>这份看板不能证明什么</h3>
+        <ul>
+          <li>不能证明某次改动是否已经审批</li>
+          <li>不能证明 90% OFF 造成了多少实际损失</li>
+          <li>看不到 Shopify 订单、商品级广告花费和 Google 账户余额</li>
+          <li>Merchant Center 有少量后台字段读不到</li>
+        </ul>
+      </div>
+      <div class="boundary neutral">
+        <h3>自动化现在的状态</h3>
+        <ul>
+          <li>系统只读，不会自动改优惠、价格、预算或广告开关</li>
+          <li>三个定时任务已建好，但都处于暂停状态</li>
+          <li>紧急问题目前只写本地提醒文件，外部通知还没接</li>
+          <li>负责人确认后，才会正式启用定时任务</li>
+        </ul>
+      </div>
+    </div>
+    </section><footer>数据来自你已授权的 Google Ads 与 Merchant Center 只读接口。页面不展示原始字段和明细证据；需要追溯时，请查看本地风险库与快照。</footer></div></body></html>
